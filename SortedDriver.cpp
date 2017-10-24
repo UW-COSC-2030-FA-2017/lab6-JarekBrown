@@ -7,7 +7,7 @@
 
 #include "RandomUtilities.h"
 #include "ContainerPrinting.h"
-#include "winTimer.h"
+#include "unixTimer.cpp"
 #include <list>
 #include <iostream>
 #include <vector>
@@ -63,8 +63,38 @@ getWords(size_t numWords, size_t wordLength, string alphabet)
 double
 mostIsolated(vector<double> & number)
 {
-	// STUB  STUB  STUB
-	return -123.456;
+	if(!number.empty())
+	{
+	double iso = 0;  //most isolated number
+	double isoDist = 0; //current distance for iso
+	for(int i = 0; i <= number.size()-1; i++)
+	{
+		double lowDist, upDist, nearDist;
+		
+		if(i == 0) //checks if at beginning, since there would be no value preceding
+		{
+			nearDist = (abs(number.at(i+1)) - abs(number.at(i)));
+		}
+		else if(i == number.size()-1) //checks if at end, since there would be no value proceding
+		{
+			nearDist = (abs(number.at(i)) - abs(number.at(i-1)));
+		}
+		else{
+		lowDist = (abs(number.at(i)) - abs(number.at(i-1)));
+		upDist = (abs(number.at(i+1)) - abs(number.at(i)));
+		if(lowDist > upDist) {nearDist = upDist;}
+		else{nearDist = lowDist;}
+		}
+		
+		if(nearDist > isoDist)
+		{
+			isoDist = lowDist;
+			iso = number.at(i);
+		}
+	}
+	return iso;
+	}
+	else{return -42.4242;}
 }
 
 
