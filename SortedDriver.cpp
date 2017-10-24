@@ -73,15 +73,15 @@ mostIsolated(vector<double> & number)
 		
 		if(i == 0) //checks if at beginning, since there would be no value preceding
 		{
-			nearDist = (abs(number.at(i+1)) - abs(number.at(i)));
+			nearDist = abs(abs(number.at(i+1)) - abs(number.at(i)));
 		}
 		else if(i == number.size()-1) //checks if at end, since there would be no value proceding
 		{
-			nearDist = (abs(number.at(i)) - abs(number.at(i-1)));
+			nearDist = abs(abs(number.at(i)) - abs(number.at(i-1)));
 		}
 		else{
-		lowDist = (abs(number.at(i)) - abs(number.at(i-1)));
-		upDist = (abs(number.at(i+1)) - abs(number.at(i)));
+		lowDist = abs(abs(number.at(i)) - abs(number.at(i-1)));
+		upDist = abs(abs(number.at(i+1)) - abs(number.at(i)));
 		if(lowDist > upDist) {nearDist = upDist;}
 		else{nearDist = lowDist;}
 		}
